@@ -9,9 +9,9 @@ type ForecastDisplay struct {
 	Humidity    float64 //湿度
 }
 
-func NewForecastDisplay(observable Observable) ForecastDisplay {
-	forecastDisplay := ForecastDisplay{Observable: observable}
-	forecastDisplay.Observable.RegisterObserver(&forecastDisplay)
+func NewForecastDisplay(observable Observable) Observer {
+	forecastDisplay := &ForecastDisplay{Observable: observable}
+	forecastDisplay.Observable.RegisterObserver(forecastDisplay)
 	return forecastDisplay
 }
 

@@ -9,9 +9,9 @@ type CurrentDisplay struct {
 	Pressure    float64 //气压
 }
 
-func NewCurrentDisplay(observable Observable) CurrentDisplay {
-	currentDisplay := CurrentDisplay{Observable: observable}
-	currentDisplay.Observable.RegisterObserver(&currentDisplay)
+func NewCurrentDisplay(observable Observable) Observer {
+	currentDisplay := &CurrentDisplay{Observable: observable}
+	currentDisplay.Observable.RegisterObserver(currentDisplay)
 	return currentDisplay
 }
 

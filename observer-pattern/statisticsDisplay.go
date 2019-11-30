@@ -9,11 +9,11 @@ type StatisticsDisplay struct {
 	Pressure    float64 //气压
 }
 
-func NewStatisticsDisplay(observable Observable) StatisticsDisplay {
-	statisticsDisplay := StatisticsDisplay{
+func NewStatisticsDisplay(observable Observable) Observer {
+	statisticsDisplay := &StatisticsDisplay{
 		Observable: observable,
 	}
-	statisticsDisplay.Observable.RegisterObserver(&statisticsDisplay)
+	statisticsDisplay.Observable.RegisterObserver(statisticsDisplay)
 	return statisticsDisplay
 }
 
