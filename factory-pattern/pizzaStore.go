@@ -35,11 +35,11 @@ type NYPizzaStory struct {
 func (N NYPizzaStory) CreatePizza(t PizzaType) IPizza {
 	switch t {
 	case CheesePizzaType:
-		return NewNyCheesePizza()
+		return NewNyCheesePizza(NyPizzaIngredientFactory{})
 	case ClamPizzaType:
-		return NewNyClamPizza()
+		return NewNyClamPizza(NyPizzaIngredientFactory{})
 	case PepperoniPizzaType:
-		return NewNyPepperoniPizza()
+		return NewNyPepperoniPizza(NyPizzaIngredientFactory{})
 	}
 	return nil
 }
@@ -51,11 +51,11 @@ type ChinaPizzaStory struct {
 func (c ChinaPizzaStory) CreatePizza(t PizzaType) IPizza {
 	switch t {
 	case CheesePizzaType:
-		return NewChinaCheesePizza()
+		return NewChinaCheesePizza(ChinaPizzaIngredientFactory{})
 	case ClamPizzaType:
-		return NewChinaClamPizza()
+		return NewChinaClamPizza(ChinaPizzaIngredientFactory{})
 	case PepperoniPizzaType:
-		return NewChinaPepperoniPizza()
+		return NewChinaPepperoniPizza(ChinaPizzaIngredientFactory{})
 	}
 	return nil
 }

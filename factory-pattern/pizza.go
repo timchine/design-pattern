@@ -22,9 +22,10 @@ type IPizza interface {
 }
 
 type Pizza struct {
+	PizzaIngredientFactory
 	Name     string
-	Dough    string   //面团
-	Sauce    string   //酱
+	Dough    Dough   //面团
+	Sauce    Sauce   //酱
 	Toppings []string //配菜
 }
 
@@ -58,66 +59,66 @@ type NyClamPizza struct {
 	Pizza
 }
 
-func NewNyCheesePizza() NyCheesePizza {
+func NewNyCheesePizza(ingredient PizzaIngredientFactory) NyCheesePizza {
 	return NyCheesePizza{
 		Pizza{
 			Name:     "奶酪披萨",
-			Dough:    "白面面团",
-			Sauce:    "沙拉酱",
+			Dough:    ingredient.CreateDough(),
+			Sauce:    ingredient.CreateSauce(),
 			Toppings: []string{"奶酪"},
 		},
 	}
 }
 
-func NewNyPepperoniPizza() NyPepperoniPizza {
+func NewNyPepperoniPizza(ingredient PizzaIngredientFactory) NyPepperoniPizza {
 	return NyPepperoniPizza{Pizza{
 		Name:     "纽约火腿披萨",
-		Dough:    "白面面团",
-		Sauce:    "番茄酱",
+		Dough:    ingredient.CreateDough(),
+		Sauce:    ingredient.CreateSauce(),
 		Toppings: []string{"火腿"},
 	}}
 }
 
-func NewNyClamPizza() NyClamPizza {
+func NewNyClamPizza(ingredient PizzaIngredientFactory) NyClamPizza {
 	return NyClamPizza{Pizza{
 		Name:     "纽约蛤蜊披萨",
-		Dough:    "白面面团",
-		Sauce:    "番茄酱",
+		Dough:    ingredient.CreateDough(),
+		Sauce:    ingredient.CreateSauce(),
 		Toppings: []string{"蛤蜊", "生菜"},
 	}}
 }
 
-func NewChinaCheesePizza() NyCheesePizza {
+func NewChinaCheesePizza(ingredient PizzaIngredientFactory) NyCheesePizza {
 	return NyCheesePizza{
 		Pizza{
 			Name:     "中国奶酪披萨",
-			Dough:    "白面面团",
-			Sauce:    "沙拉酱",
+			Dough:    ingredient.CreateDough(),
+			Sauce:    ingredient.CreateSauce(),
 			Toppings: []string{"奶酪"},
 		},
 	}
 }
 
-func NewChinaPepperoniPizza() NyPepperoniPizza {
+func NewChinaPepperoniPizza(ingredient PizzaIngredientFactory) NyPepperoniPizza {
 	return NyPepperoniPizza{Pizza{
 		Name:     "中国火腿披萨",
-		Dough:    "白面面团",
-		Sauce:    "番茄酱",
+		Dough:    ingredient.CreateDough(),
+		Sauce:    ingredient.CreateSauce(),
 		Toppings: []string{"火腿"},
 	}}
 }
 
-func NewChinaClamPizza() NyClamPizza {
+func NewChinaClamPizza(ingredient PizzaIngredientFactory) NyClamPizza {
 	return NyClamPizza{Pizza{
 		Name:     "中国蛤蜊披萨",
-		Dough:    "白面面团",
-		Sauce:    "番茄酱",
+		Dough:    ingredient.CreateDough(),
+		Sauce:    ingredient.CreateSauce(),
 		Toppings: []string{"蛤蜊", "生菜"},
 	}}
 }
 
 func (p Pizza) Prepare() {
-	fmt.Printf("正在准备制作：%s口味的披萨\n", p.Name)
+	fmt.Printf("正在准备制作：%s\n", p.Name)
 	fmt.Printf("加入面团:%s\n", p.Dough)
 	fmt.Printf("加入酱:%s\n", p.Sauce)
 	fmt.Printf("配菜加入:%s\n", strings.Join(p.Toppings, ","))
